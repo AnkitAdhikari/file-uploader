@@ -1,0 +1,18 @@
+<div class="navbar">
+  <div class="navbar-brand-container">
+    <a href="/" class="navbar-brand">File Uploader</a>
+  </div>
+  <nav>
+    <ul class="nav-lists">
+      <li class="nav-list"><a href="/" class="nav-link">Home</a></li>
+      <% if(!locals.user){ %>
+      <li class="nav-list"><a href="/login" class="nav-link">Login</a></li>
+      <li class="nav-list">
+        <a href="/register" class="nav-link">Register</a>
+      </li>
+      <% }else{ %>
+      <li class="nav-list"><a href="/logout" class="nav-link">Logout</a></li>
+      <% } %>
+    </ul>
+  </nav>
+</div>
