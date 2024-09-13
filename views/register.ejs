@@ -6,7 +6,7 @@
     <title><%= pageTitle %></title>
   </head>
   <body>
-    <% if(locals.errors){ %> <% for(let err of locals.erros){ %>
+    <% if(locals.errors){ %> <% for(let err of locals.errors){ %>
     <div><%= err.message %></div>
     <% } %> <% } %>
     <form action="/register" method="post">
