@@ -80,11 +80,11 @@ passport.deserializeUser(async (id, done) => {
     }
 })
 
-app.use(async (req, res, next) => {
-    console.log(await prisma.session.findMany());
-    console.log(await prisma.user.findMany());
-    next()
-})
+// app.use(async (req, res, next) => {
+//     console.log(await prisma.session.findMany());
+//     console.log(await prisma.user.findMany());
+//     next()
+// })
 
 app.use('/', indexRouter);
 

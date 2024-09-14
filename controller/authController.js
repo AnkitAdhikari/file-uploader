@@ -2,6 +2,8 @@ const bcrypt = require('bcrypt');
 const { body, validationResult } = require('express-validator');
 const prisma = require('../db/prismaClient');
 const passport = require('passport');
+const fs = require('node:fs');
+const appRoot = require('app-root-path');
 
 const registerValidation = [
     body('firstName').trim().notEmpty().withMessage('first name cannot be empty').isAlpha().withMessage('first name can only be alphabets'),
@@ -48,6 +50,8 @@ const postRegister = [
                 }
             })
             const alluser = await prisma.user.findMany();
+            const folderName = `${appRoot}/uploads/${user.id}`;
+            fs.mkdirSync(folderName);
             res.redirect('/');
         } catch (error) {
             throw new Error(error);

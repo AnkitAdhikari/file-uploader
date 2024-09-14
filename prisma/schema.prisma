@@ -21,9 +21,26 @@ model Session {
 }
 
 model User {
-  id         String @id @default(uuid())
+  id         String     @id @default(uuid())
   first_name String
   last_name  String
-  email      String @unique
+  email      String     @unique
   password   String
+  resources  Resource[]
+}
+
+model Resource {
+  id           String        @id @default(uuid())
+  owner        User          @relation(fields: [ownerId], references: [id])
+  name         String
+  ownerId      String
+  path         String
+  resoure_type Resource_Type @default(FILE)
+  size         Decimal
+  uploaded_at  DateTime      @default(now())
+}
+
+enum Resource_Type {
+  FILE
+  FOLDER
 }

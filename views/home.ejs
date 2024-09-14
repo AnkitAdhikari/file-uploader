@@ -11,7 +11,9 @@
     <h1>Welcome to File Uploader.</h1>
     <% if(user){ %>
     <p>You are logged in as <%= user.first_name %></p>
-    <% }else{ %>
+    <% user.files.forEach((file)=>{ %>
+    <p>name:<%= file.name %> size:<%= file.size %>MB</p>
+    <% }) %> <% }else{ %>
     <p>You are not logged in</p>
     <% } %>
   </body>
