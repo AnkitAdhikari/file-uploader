@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= pageTitle %></title>
+  </head>
+  <body>
+    <% resources.forEach((resource)=>{ %> <%
+    if(resource.resource_type==='FILE'){ %>
+    <p>
+      <a href="/file/<%=resource.id%>"> name:<%= resource.name %></a> size:<%=
+      resource.size %>MB
+    </p>
+    <% }else{ %>
+    <p>
+      <a href="/folder/<%=resource.id%>"> name:<%= resource.name %></a> size:<%=
+      resource.size %>MB
+    </p>
+    <%}%> <% }) %>
+  </body>
+</html>

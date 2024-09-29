@@ -3,6 +3,7 @@ const app = express();
 require('dotenv').config()
 const path = require('node:path');
 const session = require('express-session');
+const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
@@ -16,6 +17,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'));
 app.use(
     session({
         cookie: {

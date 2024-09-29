@@ -1,9 +1,10 @@
 const appRoot = require('app-root-path');
 const fs = require('node:fs');
-const { getAllFiles } = require('./fileController');
+const { getAllResources } = require('./fileController');
 const getHomePage = async (req, res) => {
     if (req.user) {
-        req.user.files = await getAllFiles(req, res);
+        req.user.resources = await getAllResources(req, res);
+        console.log(req.user.resources)
     }
     res.render('home', { pageTitle: 'File Uploader', user: req.user });
 }

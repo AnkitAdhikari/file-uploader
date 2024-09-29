@@ -8,8 +8,31 @@
   </head>
   <body>
     <%- include('partials/navBar') %>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-      <input type="file" name="uploaded_file" />
+    <form
+      action="/upload"
+      class="file-upload-form"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <div>
+        <label
+          >Choose a file:
+          <input required type="file" name="uploaded_file" />
+        </label>
+      </div>
+      <div>
+        <% if(folders){%>
+        <label>
+          Select folder to upload on:
+          <select name="folder">
+            <option value="">select folder</option>
+            <% for(let folder of folders){ %>
+            <option value="<%=folder.id%>"><%=folder.name%></option>
+            <% } %>
+          </select>
+        </label>
+        <% } %>
+      </div>
       <button type="submit">Upload</button>
     </form>
   </body>

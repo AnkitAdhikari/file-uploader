@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= pageTitle %></title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .file-detail {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+      }
+      .file-detail h2 {
+        margin-bottom: 20px;
+      }
+      .file-info {
+        margin-bottom: 15px;
+      }
+      .file-info label {
+        font-weight: bold;
+      }
+      .file-info span {
+        margin-left: 10px;
+      }
+      .file-actions {
+        margin-top: 20px;
+      }
+      .file-actions button,
+      .file-actions input {
+        margin-right: 10px;
+        padding: 8px 12px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      input[type="text"] {
+        padding: 8px;
+        width: calc(100% - 24px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="file-detail">
+      <h2>File Details</h2>
+
+      <div class="file-info">
+        <label for="fileName">File Name:</label>
+        <span id="fileName"><%= file.name %></span>
+      </div>
+
+      <div class="file-info">
+        <label for="uploadedTime">Uploaded Time:</label>
+        <span id="uploadedTime"
+          ><%= new Date(file.uploaded_at).toDateString() %></span
+        >
+      </div>
+
+      <div class="file-info">
+        <label for="fileSize">Size:</label>
+        <span id="fileSize"><%= file.size %> MB</span>
+      </div>
+
+      <div class="file-actions">
+        <a id="downloadLink" href="/download/<%= file.id %>">
+          <button>Download</button>
+        </a>
+        <form action="/file/<%= file.id %>?_method=PUT" method="post">
+          <input
+            type="text"
+            id="editFileName"
+            value="<%= file.name %>"
+            name="filename"
+          />
+          <button type="submit">Edit File Name</button>
+        </form>
+        <form action="/file/<%= file.id %>?_method=DELETE" method="post">
+          <button style="background-color: red; color: white">
+            Delete File
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

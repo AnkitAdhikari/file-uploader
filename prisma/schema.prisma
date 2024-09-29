@@ -30,14 +30,14 @@ model User {
 }
 
 model Resource {
-  id           String        @id @default(uuid())
-  owner        User          @relation(fields: [ownerId], references: [id])
-  name         String
-  ownerId      String
-  path         String
-  resoure_type Resource_Type @default(FILE)
-  size         Decimal
-  uploaded_at  DateTime      @default(now())
+  id            String        @id @default(uuid())
+  owner         User          @relation(fields: [ownerId], references: [id])
+  name          String
+  ownerId       String
+  path          String
+  resource_type Resource_Type @default(FILE)
+  size          Decimal       @default(0.0)
+  uploaded_at   DateTime      @default(now())
 }
 
 enum Resource_Type {

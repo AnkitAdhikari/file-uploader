@@ -11,10 +11,38 @@
     <h1>Welcome to File Uploader.</h1>
     <% if(user){ %>
     <p>You are logged in as <%= user.first_name %></p>
-    <% user.files.forEach((file)=>{ %>
-    <p>name:<%= file.name %> size:<%= file.size %>MB</p>
-    <% }) %> <% }else{ %>
+    <% if(user.resources.length>0) {%>
+    <table class="table">
+      <thead class="table-head">
+        <th class="resource-name-title">Name</th>
+        <th class="resource-type-title">Type</th>
+        <th class="resource-size-title">Size</th>
+        <th class="modified-at-title">Modified At</th>
+      </thead>
+      <tbody class="table-body">
+        <% user.resources.forEach((resource)=>{ %>
+        <tr class="resource">
+          <td class="resource-name">
+            <a
+              href="<%=`/${resource.resource_type==='FILE'?'file':'folder'}/${resource.id}`%>"
+              ><%= resource.name %></a
+            >
+          </td>
+          <td class="resource-type">
+            <%=resource.resource_type==='FILE'?'file':'folder'%>
+          </td>
+          <td class="resource-size"><%= resource.size %></td>
+          <td class="resource-modified-at">
+            <%= new Date(resource.uploaded_at).toDateString() %>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <% }else{ %>
+    <p>Drive is empty</p>
+    <% } %> <% }else{ %>
     <p>You are not logged in</p>
-    <% } %>
+    <% }%>
   </body>
 </html>
